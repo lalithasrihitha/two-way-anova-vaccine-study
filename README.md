@@ -49,7 +49,7 @@ The results indicate that neither vaccine type nor age group—individually or i
 
 ## Files
 -  Two_Way_ANOVA.Rmd` – R Markdown analysis
--  Two_Way_ANOVA.pdf` – Knit PDF output
+-  Two_Way_ANOVA` – Knit PDF output
 - `data/vaccine.csv` – Dataset used for analysis
 
 ---
