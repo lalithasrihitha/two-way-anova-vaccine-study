@@ -1,0 +1,74 @@
+---
+title: "WEEK 11 HOME SUBMISSION"
+author: "Srihitha"
+date: "2025-03-31"
+output:
+  pdf_document: default
+  html_document: default
+---
+```{r}
+# Loading necessary libraries
+library(tidyverse)
+library(ggplot2)
+
+```
+
+```{r}
+vaccine_data <- read.csv("~/Desktop/appld stats/vaccine-1.csv")
+head(vaccine_data)
+str(vaccine_data)
+```
+
+```{r}
+
+#Stating the Hypotheses
+
+# We will test the following:
+
+# 1.Main effect of Vaccine Type:
+# H0: There is no difference in antibody titers between Vaccine_A and Vaccine_B.  
+# H1: There is a difference in antibody titers between Vaccine_A and Vaccine_B.
+
+# 2.Main effect of Age Group:
+# H0: There is no difference in antibody titers between Young and Elderly groups.  
+#  H1: There is a difference in antibody titers between Young and Elderly groups.
+
+# 3.Interaction effect between Vaccine Type and Age Group:
+# H0: There is no interaction effect on antibody titers.  
+# H1: There is an interaction effect between Vaccine Type and Age Group on antibody titers.
+```
+
+```{r}
+
+# Convert columns to factors
+vaccine_data$Vaccine_Type <- as.factor(vaccine_data$Vaccine_Type)
+vaccine_data$Age_Group <- as.factor(vaccine_data$Age_Group)
+
+# Perform two-way ANOVA
+anova_model <- aov(Antibody_Titer ~ Vaccine_Type * Age_Group, data = vaccine_data)
+summary(anova_model)
+
+```
+
+```{r}
+# Results and Interpretation
+
+# Based on the two-way ANOVA results:
+
+#  Main Effect of Vaccine Type:  
+#   - F(1, 36) = 2.215, p = 0.145  
+#   - Since p > 0.05, the effect of vaccine type on antibody titer is not statistically significant.
+# 
+#  Main Effect of Age Group:  
+#   - F(1, 36) = 0.265, p = 0.610  
+#   - Since p > 0.05, the effect of age group on antibody titer is not statistically significant.
+# 
+# Interaction Effect (Vaccine_Type × Age_Group):  
+#   - F(1, 36) = 0.345, p = 0.561  
+#   - Since p > 0.05, there is no significant interaction effect between vaccine type and age group on antibody titer.
+
+# Final Conclusion:
+# There is no statistically significant effect of vaccine type, age group, or their interaction on antibody titer levels in this dataset. This suggests that neither the type of vaccine nor the age group independently or jointly affects the immune response in a meaningful way for this sample.
+
+```
+
